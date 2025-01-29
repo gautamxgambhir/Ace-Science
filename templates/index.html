@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AceScience</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="icon" href="https://i.ibb.co/pXtSLCL/carekit.png" type="image/x-icon"/>
+    <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+</head>
+
+<body>
+    <div id="loading-bar"></div>
+    <header>
+        <a href="{{ url_for('home') }}" class="logo">
+            <img src="https://i.ibb.co/s5hPNRj/atomiq.png" alt="AceScience Logo">
+            <span>AceScience</span>
+        </a>
+        <h1>Welcome to AceScience!</h1>
+        <p>Your go-to platform for practicing NCERT questions for Class 10 students. Test your knowledge and improve your understanding of the subjects.</p>
+    </header>
+
+    <section class="features">
+        <div class="feature-card">
+            <a href="{{ url_for('resources') }}">
+                <i class="fa-solid fa-book"></i>
+                <h3>Resources</h3>
+                <p>Access a wide range of NCERT questions, solutions, revison notes from all subjects for Class 10 students.</p>
+            </a>
+        </div>
+        <div class="feature-card">
+            <a href="{{ url_for('quiz') }}">
+                <i class="fa-solid fa-robot"></i>
+                <h3>AI Quiz</h3>
+                <p>Challenge yourself and prepare yourself by answering the AI generated questions from class 10th NCERT</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 AceScience | All rights reserved.
+    </footer>
+
+    <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>

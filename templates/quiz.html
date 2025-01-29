@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - AceScience</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
+    <link rel="icon" href="https://i.ibb.co/pXtSLCL/carekit.png" type="image/x-icon" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <a href="{{ url_for('home') }}" class="logo">
+            <img src="https://i.ibb.co/s5hPNRj/atomiq.png" alt="AceScience Logo">
+            <span>AceScience</span>
+        </a>
+        <h1>AI Quiz</h1>
+        <p>Test your knowledge with AI-generated questions from Class 10 NCERT.</p>
+    </header>
+
+    <main>
+        <section id="quiz-container">
+            <!-- Counter Section -->
+            <div id="counter-box">
+                <p>Correct: <span id="correct-count">0</span> | Wrong: <span id="wrong-count">0</span> | Total: <span id="total-count">0</span></p>
+            </div>
+
+            <!-- Question Section -->
+            <div id="question-box">
+                <p id="question">Loading question...</p>
+            </div>
+
+            <!-- Answer Buttons -->
+            <div id="answer-box">
+                <button id="true-answer" class="answer-button true">True</button>
+                <button id="false-answer" class="answer-button false">False</button>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result-box">
+                <p id="result"></p>
+            </div>
+
+            <!-- Explanation Section -->
+            <div id="explanation-box">
+                <button id="next-question" class="navigation-button">Next Question</button>
+                <button id="show-explanation" class="navigation-button">Show Explanation</button>
+                <div id="explanation" class="explanation-box"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 AceScience | All rights reserved.
+    </footer>
+</body>
+
+</html>

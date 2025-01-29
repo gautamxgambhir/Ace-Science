@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root {
+    --primary-color: rgb(42, 133, 194);
+    --secondary-color: rgba(42, 105, 194, 0.8);
+    --text-color: #333;
+    --bg-light: #f7f7f7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-primary: 'Ubuntu', sans-serif;
+    --font-secondary: 'Parkinsans', sans-serif;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+header .logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+}
+
+header .logo span {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bolder;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    font-size: 1.1rem;
+}
+
+#quiz-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    text-align: center;
+}
+
+#counter-box {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+#question-box {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    border: 2px solid var(--shadow-color);
+    border-radius: 8px;
+    background-color: #f4f4f4;
+}
+
+#answer-box {
+    margin-bottom: 20px;
+}
+
+.answer-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.answer-button.true {
+    background-color: green;
+    color: white;
+}
+
+.answer-button.false {
+    background-color: red;
+    color: white;
+}
+
+#result-box {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+#explanation-box {
+    margin-top: 20px;
+}
+
+#explanation {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    border: 2px solid var(--shadow-color);
+    border-radius: 8px;
+    background-color: #f4f4f4;
+}
+
+.navigation-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#next-question {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#next-question:hover {
+    background-color: var(--secondary-color);
+}
+
+#show-explanation {
+    background-color: orange;
+    color: white;
+}
+
+#show-explanation:hover {
+    background-color: darkorange;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    #quiz-container {
+        padding: 15px;
+    }
+
+    .answer-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    #question-box {
+        font-size: 1rem;
+    }
+
+    #result-box {
+        font-size: 1rem;
+    }
+
+    #explanation {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .answer-button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    #question-box {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    #explanation {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}

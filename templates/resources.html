@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AceScience - Redefining Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resources.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="https://i.ibb.co/pXtSLCL/carekit.png" type="image/x-icon"/>
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+</head>
+
+<body>
+    <div id="loading-bar"></div>
+    <header>
+        <a href="{{ url_for('home') }}" class="logo">
+            <img src="https://i.ibb.co/s5hPNRj/atomiq.png" alt="AceScience Logo">
+            <span>AceScience</span>
+        </a>
+        <h1>Redefining Learning</h1>
+        <p>Explore useful resources designed to make learning efficient, engaging, fun and to to accelerate your learning journey.</p>
+    </header>
+
+    <section class="main-content">
+        <div class="ways">
+            <div class="way-card">
+                <i class="fas fa-book-open"></i>
+                <h3>NCERT Solutions</h3>
+                <p>Comprehensive solutions to NCERT problems to help you excel in academics with ease.</p>
+                <a href="https://www.learncbse.in/ncert-solutions-class-10-science/" target="_blank">Explore Solutions</a>
+            </div>
+
+            <div class="way-card">
+                <i class="fas fa-pen"></i>
+                <h3>Questions Practice</h3>
+                <p>Prepare smarter with curated resources for competitive exams to achieve your dream career.</p>
+                <a href="https://cbseacademic.nic.in/web_material/Manuals/CFPQ_Science10.pdf" target="_blank">Start Preparing</a>
+            </div>
+
+            <div class="way-card">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>Revision Notes</h3>
+                <p>Concise, effective and useful notes to revise key concepts quickly and efficiently. </p>
+                <a href="https://www.learncbse.in/cbse-notes-class-10-science/" target="_blank">View Notes</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 AceScience | All Rights Reserved</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+    --primary-color: rgb(42, 133, 194);
+    --secondary-color: rgba(42, 105, 194, 0.8);
+    --text-color: #333;
+    --bg-light: #f7f7f7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-primary: 'Ubuntu', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-light);
+    color: var(--text-color);
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
+#loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: white;
+    z-index: 9999;
+    transition: width 0.3s ease-out;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+}
+
+.logo span {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: white;
+    padding: 2px;
+    font-weight: bolder;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+header h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+.main-content {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-content h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-content p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.ways {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.way-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    width: 330px;
+    height: 280px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.way-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.way-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.way-card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.way-card a {
+    text-decoration: none;
+    color: white;
+    background-color: var(--primary-color);
+    padding: 10px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+    max-width: 200px;
+    transition: ease-out 0.5s;
+}
+
+.way-card a:hover {
+    transition: ease-in 0.5s;
+    background-color: var(--secondary-color);
+}
+
+.way-card:hover {
+    transform: translateY(-5px);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    position: relative;
+    top: 94px;  
+}
+
+@media (max-width: 768px) {
+    .way-card {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    .main-content h2 {
+        font-size: 2rem;
+    }
+}
