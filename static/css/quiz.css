@@ -112,6 +112,7 @@ header p {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease;
 }
 
 .answer-button.true {
@@ -119,9 +120,21 @@ header p {
     color: white;
 }
 
+.answer-button.true:hover {
+    background-color: #36b236;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.3);
+}
+
 .answer-button.false {
     background-color: red;
     color: white;
+}
+
+.answer-button.false:hover {
+    background-color: #ff3b30;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
 }
 
 #result-box {
@@ -152,6 +165,7 @@ header p {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease;
 }
 
 #next-question {
@@ -161,6 +175,8 @@ header p {
 
 #next-question:hover {
     background-color: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(42, 133, 194, 0.3);
 }
 
 #show-explanation {
@@ -170,6 +186,8 @@ header p {
 
 #show-explanation:hover {
     background-color: darkorange;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
 }
 
 /* Sticky Footer */
