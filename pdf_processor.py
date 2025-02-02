@@ -34,7 +34,7 @@ import random
 #         json.dump(all_chapters, file, ensure_ascii=False, indent=4)
 #     print(f"Chapters saved to {output_file}")
 
-def select_random_page(chapter_name="all", data_file="chapters_data.json"):
+def select_random_page(chapter_name="all", data_file="chemistry.json"):
     """
     Select a random page from the processed chapter data.
     """

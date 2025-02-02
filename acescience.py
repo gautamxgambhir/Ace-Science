@@ -12,10 +12,9 @@ API_KEY: Final[str] = os.getenv("API_KEY")
 API_URL = "https://api.together.xyz/v1/chat/completions"
 HEADERS = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
-def generate_response(user_input):
-    """Generates a question from the NCERT Class 10 Science textbook."""
+def generate_response(user_input, datafile):
     
-    data_list = select_random_page()
+    data_list = select_random_page(data_file=datafile)
     chapter_name = data_list[0]
     page_number = data_list[1]
     text = data_list[2]
@@ -25,7 +24,7 @@ def generate_response(user_input):
         "content": (
             "you have to give only one question"
             "dont include any additional text or commentary outside the specified format"
-            "You are an AI Question Generator designed to create concise, meaningful, and exam-relevant questions exclusively from the NCERT Class 10 Science textbook. "
+            "You are an AI Question Generator designed to create concise, meaningful, and exam-relevant questions exclusively from the NCERT Class 10 textbooks. "
             "Your task is to generate questions strictly based on the given text and the following rules: "
             "\n\n"
             "### Guidelines for Generating Questions: "
@@ -80,7 +79,7 @@ def ai_check_answer(user_input):
     system_instruction = {
         "role": "system",
         "content": (
-            "You are an AI designed to validate answers for questions based on the NCERT Class 10 Science textbook. "
+            "You are an AI designed to validate answers for questions based on the NCERT Class 10 textbooks. "
             "Your task is to determine if the user's answer is correct or incorrect based on the provided question and correct answer. "
             "\n\n"
             "### Guidelines for Validating Answers: "

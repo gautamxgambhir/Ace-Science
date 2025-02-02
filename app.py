@@ -27,20 +27,25 @@ def quiz():
 def ask_question():
     retries = 3
     while retries > 0:
-        response = generate_response("['Question', 'Answer', 'Explanation']")
-        try:
-            parsed_response = eval(response)
-            question, answer, explanation = parsed_response
-            if question in session_data["asked_questions"]:
+        subject = request.args.get('subject', 'general')
+        if subject == 'general':
+            response = "Please select a subject to generate a question."
+            return jsonify({"question":response})
+        else:
+            response = generate_response("['Question', 'Answer', 'Explanation']", datafile=subject)
+            try:
+                parsed_response = eval(response)
+                question, answer, explanation = parsed_response
+                if question in session_data["asked_questions"]:
+                    retries -= 1
+                    continue
+                session_data["current_question"] = question
+                session_data["answer"] = answer
+                session_data["explanation"] = explanation
+                session_data["asked_questions"].add(question)
+                return jsonify({"question": question})
+            except Exception:
                 retries -= 1
-                continue
-            session_data["current_question"] = question
-            session_data["answer"] = answer
-            session_data["explanation"] = explanation
-            session_data["asked_questions"].add(question)
-            return jsonify({"question": question})
-        except Exception:
-            retries -= 1
     return jsonify({"error": "Failed to generate a question. Try again."})
 
 @app.route("/check_answer", methods=["POST"])
@@ -73,3 +78,4 @@ def show_explanation():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    ask_question()

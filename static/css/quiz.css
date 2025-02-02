@@ -73,9 +73,81 @@ header p {
     font-size: 1.1rem;
 }
 
+/* Subject Selector - Matches Quiz Container */
+.subject-selector {
+    text-align: center;
+    margin: 40px auto 20px;
+    padding: 0 20px;
+    max-width: 600px;
+}
+
+#subject-dropdown {
+    width: 100%;
+    padding: 14px 45px 14px 20px;
+    font-size: 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    border: 2px solid var(--shadow-color);
+    border-radius: 10px;
+    background: white;
+    color: var(--text-color);
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232a85c2'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 1em;
+}
+
+#subject-dropdown option {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    background: #f4f4f4;
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+#subject-dropdown:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px var(--shadow-color);
+}
+
+#subject-dropdown:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(42, 133, 194, 0.1);
+}
+
+/* Perfect Mobile Match */
+@media (max-width: 768px) {
+    .subject-selector {
+        margin: 30px auto 15px;
+        padding: 0 15px;
+    }
+    
+    #subject-dropdown {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        background-position: right 15px center;
+    }
+    
+    #subject-dropdown option {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #subject-dropdown {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
 #quiz-container {
     max-width: 600px;
-    margin: 40px auto;
+    margin: auto auto;
+    margin-bottom: 30px;
     background: white;
     padding: 20px;
     border-radius: 10px;

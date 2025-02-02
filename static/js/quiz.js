@@ -2,31 +2,34 @@ $(document).ready(function () {
     let correctCount = 0;
     let wrongCount = 0;
     let totalCount = 0;
+    let currentSubject = null;
 
-    // Load the first question
+    // Load first question
     loadQuestion();
 
-    // Handle True button click
-    $("#true-answer").click(function () {
-        submitAnswer(true);
+    // Subject selection handler
+    $("#subject-dropdown").change(function () {
+        currentSubject = $(this).val();
+        if (currentSubject) {
+            sessionStorage.setItem('selectedSubject', currentSubject); // Store subject
+            loadQuestion(currentSubject);
+        }
     });
 
-    // Handle False button click
-    $("#false-answer").click(function () {
-        submitAnswer(false);
-    });
+    // Button handlers
+    $("#true-answer").click(() => submitAnswer(true));
+    $("#false-answer").click(() => submitAnswer(false));
+    $("#next-question").click(() => loadQuestion(currentSubject));
+    $("#show-explanation").click(showExplanation);
 
-    // Handle Next Question button click
-    $("#next-question").click(function () {
-        loadQuestion();
-    });
-    $("#show-explanation").click(function () {
-        showExplanation();
-    });
+    // Modified loadQuestion function
+    function loadQuestion(subject = null) {
+        let url = "/ask_question";
+        if (subject) {
+            url += `?subject=${encodeURIComponent(subject)}`;
+        }
 
-    // Function to load a new question
-    function loadQuestion() {
-        $.get("/ask_question", function (data) {
+        $.get(url, function (data) {
             if (data.question) {
                 $("#question").text(data.question);
                 $("#result").text("");
