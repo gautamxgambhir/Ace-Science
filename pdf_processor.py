@@ -37,7 +37,7 @@ def save_chapters_to_json(pdf_paths, output_file="chapters_data.json"):
 def select_random_page(chapter_name="all", data_file="chemistry.json"):
     if data_file == "all":
         random_data_file = random.choice(["chemistry.json", "physics.json", "biology.json", "history.json", "geography.json", "political_science.json", "economics.json"])
-        with open(random_data_file, "r", encoding="utf-8") as file:
+        with open(f"subjects/{random_data_file}", "r", encoding="utf-8") as file:
             chapters_data = json.load(file)
         if chapter_name != "all":
             chapter = next((ch for ch in chapters_data if ch["chapter"] == chapter_name), None)
@@ -47,7 +47,7 @@ def select_random_page(chapter_name="all", data_file="chemistry.json"):
         data_list = [chapter["chapter"], page["page"], page["text"]]
         return data_list
     else:
-        with open(data_file, "r", encoding="utf-8") as file:
+        with open(f"subjects/{data_file}", "r", encoding="utf-8") as file:
             chapters_data = json.load(file)
         if chapter_name != "all":
             chapter = next((ch for ch in chapters_data if ch["chapter"] == chapter_name), None)
