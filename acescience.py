@@ -51,6 +51,8 @@ def generate_response(user_input, datafile):
             "- The explanation should be 1-2 sentences and clarify the reasoning behind the answer. "
             "- Prioritize clarity and exam relevance in all questions. "
             "\n\n"
+            "Make sure to include chapter number and name both, in explanation you give, in a NEW LINE"
+            "DO NOT GIVE PAGE NUMBER IN EXPLANATION"
             "### Text Details: "
             f"The content you are working with is from '{chapter_name}', Page: {page_number}. "
             f"The text is: '{text}'."
