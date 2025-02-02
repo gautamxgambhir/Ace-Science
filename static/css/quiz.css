@@ -119,31 +119,6 @@ header p {
     box-shadow: 0 4px 12px rgba(42, 133, 194, 0.1);
 }
 
-/* Perfect Mobile Match */
-@media (max-width: 768px) {
-    .subject-selector {
-        margin: 30px auto 15px;
-        padding: 0 15px;
-    }
-    
-    #subject-dropdown {
-        padding: 12px 24px;
-        font-size: 1.1rem;
-        background-position: right 15px center;
-    }
-    
-    #subject-dropdown option {
-        padding: 10px 16px;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    #subject-dropdown {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-}
 #quiz-container {
     max-width: 600px;
     margin: auto auto;
@@ -301,6 +276,21 @@ footer {
     #explanation {
         font-size: 0.9rem;
     }
+    .subject-selector {
+        margin: 30px auto 15px;
+        padding: 0 15px;
+    }
+    
+    #subject-dropdown {
+        padding: 14px 45px 14px 20px;
+        font-size: 1.1rem;
+        background-position: right 15px center;
+    }
+    
+    #subject-dropdown option {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -325,5 +315,9 @@ footer {
     #explanation {
         font-size: 0.8rem;
         padding: 8px;
+    }
+    #subject-dropdown {
+        padding: 14px 45px 14px 20px;
+        font-size: 1rem;
     }
 }
