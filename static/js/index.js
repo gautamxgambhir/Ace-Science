@@ -23,7 +23,7 @@ links.forEach(link => {
     });
 });
 document.addEventListener('DOMContentLoaded', function (event) {
-    var dataText = ["Welcome to AceScience!", "Useful Resources.", "AI Quiz Bot."];
+    var dataText = ["Welcome to AceScience!", "AI Quiz Bot."];
     function typeWriter(text, i, fnCallback) {
         if (i < (text.length)) {
             document.querySelector("h1").innerHTML = text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
