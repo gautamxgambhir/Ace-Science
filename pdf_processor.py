@@ -35,13 +35,12 @@ import random
 #     print(f"Chapters saved to {output_file}")
 
 # pdf_files = {
-#     "Chapter 1: Resources and Development": "jess101.pdf",
-#     "Chapter 2: Forest and Wildlife Resources": "jess102.pdf",
-#     "Chapter 3: Water Resources": "jess103.pdf",
-#     "Chapter 4: Agriculture": "jess104.pdf",
-#     "Chapter 5: Minerals and Energy Resources": "jess105.pdf",
-#     "Chapter 6: Manufacturing Industries": "jess106.pdf",
-#     "Chapter 7: Lifelines of National Economy": "jess107.pdf"
+#     "Chapter 1: Accounting for Share Capital": "leac201.pdf",
+#     "Chapter 2: Issue and Redemption of Debentures": "leac202.pdf",
+#     "Chapter 3: Financial Statements of a Company": "leac203.pdf",
+#     "Chapter 4: Analysis of Financial Statements": "leac204.pdf",
+#     "Chapter 5: Accounting Ratios": "leac205.pdf",
+#     "Chapter 6: Cash Flow Statement": "leac206.pdf"
 # }
 
 # save_chapters_to_json(pdf_files)

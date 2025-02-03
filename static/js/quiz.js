@@ -7,9 +7,9 @@ $(document).ready(function () {
     
     const subjects = {
         "9": ["All", "Chemistry", "Physics", "Biology", "Geography", "Civics", "History", "Economics"],
-        "10": ["All", "Chemistry", "Physics", "Biology", "Geography", "Political Science", "Economics", "History"]
-        // "11": ["Chemistry", "Physics", "Biology", "Accountancy", "Business Studies", "Economics", "Political Science", "Geography", "History", "Computer Science"],
-        // "12": ["Chemistry", "Physics", "Biology", "Accountancy", "Business Studies", "Economics", "Political Science", "Geography", "History", "Computer Science"]
+        "10": ["All", "Chemistry", "Physics", "Biology", "Geography", "Political Science", "Economics", "History"],
+        "11": ["Accountancy Part-1", "Accountancy Part-2"],
+        "12": ["Accountancy Part-1", "Accountancy Part-2"]
     };
     
     const $classDropdown = $("#class-dropdown");
