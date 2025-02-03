@@ -226,6 +226,10 @@ header p {
     font-weight: bold;
 }
 
+#question{
+    padding: 0px 30px;
+}
+
 #question-box {
     margin-bottom: 20px;
     font-size: 1.2rem;
