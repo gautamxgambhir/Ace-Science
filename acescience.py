@@ -4,16 +4,13 @@ from dotenv import load_dotenv
 import os
 from pdf_processor import select_random_page
 
-# Load API Key
 load_dotenv()
 API_KEY: Final[str] = os.getenv("API_KEY")
 
-# Together API Details
 API_URL = "https://api.together.xyz/v1/chat/completions"
 HEADERS = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
 def generate_response(user_input, datafile):
-    
     data_list = select_random_page(data_file=datafile)
     chapter_name = data_list[0]
     page_number = data_list[1]
@@ -75,9 +72,7 @@ def generate_response(user_input, datafile):
     return response.json()["choices"][0]["message"]["content"]
 
 
-def ai_check_answer(user_input):
-    """Validates the user's answer to the generated question."""
-    
+def ai_check_answer(user_input):    
     system_instruction = {
         "role": "system",
         "content": (

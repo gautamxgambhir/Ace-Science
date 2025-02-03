@@ -3,7 +3,6 @@ from acescience import generate_response, ai_check_answer
 
 app = Flask(__name__)
 
-# Session data
 session_data = {
     "current_question": None,
     "answer": None,
@@ -27,7 +26,7 @@ def quiz():
 def ask_question():
     retries = 3
     while retries > 0:
-        subject = request.args.get('subject', 'general')
+        subject = request.args.get('file', 'general')
         if subject == 'general':
             response = "Please select a subject to generate a question."
             return jsonify({"question":response})
@@ -50,14 +49,12 @@ def ask_question():
 
 @app.route("/check_answer", methods=["POST"])
 def check_answer():
-    data = request.get_json()  # Parse JSON payload
-    user_answer = data.get('user_answer', '')  # Get user answer
-    correct_answer = session_data.get("answer", "")  # Retrieve the correct answer from session
+    data = request.get_json()
+    user_answer = data.get('user_answer', '')
+    correct_answer = session_data.get("answer", "")
 
-    # Combine the question, correct answer, and user answer for validation
     validation_input = f"Question: '{session_data['current_question']}'\nUser's Answer: '{user_answer}'\nCorrect Answer: '{correct_answer}'"
 
-    # Call the AI validation function
     try:
         validation_result = ai_check_answer(validation_input)
         if validation_result.lower().strip() == "correct":
@@ -68,7 +65,7 @@ def check_answer():
         print(f"Error in ai_check_answer: {e}")
         result = "Error validating answer. Please try again."
 
-    print(f"Validation Input: {validation_input}, Result: {result}")  # Debugging
+    print(f"Validation Input: {validation_input}, Result: {result}")
     return jsonify({"result": result})
 
 @app.route("/show_explanation", methods=["POST"])

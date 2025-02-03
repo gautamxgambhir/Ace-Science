@@ -173,7 +173,6 @@ header p {
     transform: translateY(-5px);
 }
 
-/* Sticky Footer */
 footer {
     background-color: var(--primary-color);
     color: white;

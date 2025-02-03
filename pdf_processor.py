@@ -1,7 +1,7 @@
-# from PyPDF2 import PdfReader
 import json
 import os
 import random
+# from PyPDF2 import PdfReader
 
 # def process_pdf(pdf_path, chapter_name):
 #     """
@@ -34,9 +34,32 @@ import random
 #         json.dump(all_chapters, file, ensure_ascii=False, indent=4)
 #     print(f"Chapters saved to {output_file}")
 
+# pdf_files = {
+#     "Chapter 1: Resources and Development": "jess101.pdf",
+#     "Chapter 2: Forest and Wildlife Resources": "jess102.pdf",
+#     "Chapter 3: Water Resources": "jess103.pdf",
+#     "Chapter 4: Agriculture": "jess104.pdf",
+#     "Chapter 5: Minerals and Energy Resources": "jess105.pdf",
+#     "Chapter 6: Manufacturing Industries": "jess106.pdf",
+#     "Chapter 7: Lifelines of National Economy": "jess107.pdf"
+# }
+
+# save_chapters_to_json(pdf_files)
+
 def select_random_page(chapter_name="all", data_file="chemistry.json"):
-    if data_file == "all":
-        random_data_file = random.choice(["chemistry.json", "physics.json", "biology.json", "history.json", "geography.json", "political_science.json", "economics.json"])
+    if data_file == "all9.json":
+        random_data_file = random.choice(["chemistry9.json", "physics9.json", "biology9.json", "history9.json", "geography9.json", "political_science9.json", "economics.json9"])
+        with open(f"subjects/{random_data_file}", "r", encoding="utf-8") as file:
+            chapters_data = json.load(file)
+        if chapter_name != "all":
+            chapter = next((ch for ch in chapters_data if ch["chapter"] == chapter_name), None)
+        else:
+            chapter = random.choice(chapters_data)
+        page = random.choice(chapter["pages"])
+        data_list = [chapter["chapter"], page["page"], page["text"]]
+        return data_list
+    elif data_file == "all10.json":
+        random_data_file = random.choice(["chemistry10.json", "physics10.json", "biology10.json", "history10.json", "geography10.json", "political_science10.json", "economics10.json"])
         with open(f"subjects/{random_data_file}", "r", encoding="utf-8") as file:
             chapters_data = json.load(file)
         if chapter_name != "all":
@@ -56,12 +79,3 @@ def select_random_page(chapter_name="all", data_file="chemistry.json"):
         page = random.choice(chapter["pages"])
         data_list = [chapter["chapter"], page["page"], page["text"]]
         return data_list
-
-# pdf_files = {
-#     "Chapter 1: The Rise of Nationalism in Europe": "jess301.pdf",
-#     "Chapter 2: Nationalism in India": "jess302.pdf",
-#     "Chapter 3: The Making of a Global World": "jess303.pdf",
-#     "Chapter 4: The Age of Industrialisation": "jess304.pdf",
-#     "Chapter 5: Print Culture and the Modern World": "jess305.pdf"
-# }
-# save_chapters_to_json(pdf_files)

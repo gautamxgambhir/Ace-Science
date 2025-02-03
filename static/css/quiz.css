@@ -24,6 +24,21 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid white;
 }
 
+.dropdown-items::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 10px;
+}
+
+.dropdown-items::-webkit-scrollbar-track {
+    background: white;
+}
+
+.dropdown-items::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
 body {
     font-family: var(--font-primary);
     background-color: var(--bg-light);
@@ -73,50 +88,124 @@ header p {
     font-size: 1.1rem;
 }
 
-/* Subject Selector - Matches Quiz Container */
-.subject-selector {
-    text-align: center;
-    margin: 40px auto 20px;
-    padding: 0 20px;
-    max-width: 600px;
+.custom-dropdown .dropdown-title.selected {
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
-#subject-dropdown {
+.loading-indicator {
+    display: none;
+    color: var(--primary-color);
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.custom-dropdown .dropdown-title {
+    position: relative;
+    padding-right: 30px;
+}
+
+.custom-dropdown .dropdown-title::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.custom-dropdown.open .dropdown-title::after {
+    content: "▲";
+}
+
+.dropdown-item.selected {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.custom-dropdown {
     width: 100%;
-    padding: 14px 45px 14px 20px;
-    font-size: 1.2rem;
+    max-width: 300px;
+    margin: 10px;
+    position: relative;
     font-family: 'Courier New', monospace;
-    font-weight: bold;
     border: 2px solid var(--shadow-color);
     border-radius: 10px;
-    background: white;
-    color: var(--text-color);
-    appearance: none;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    background-color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232a85c2'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 20px center;
-    background-size: 1em;
+    display: inline-block; 
+    z-index: 1000;
 }
 
-#subject-dropdown option {
-    padding: 12px 20px;
-    font-size: 1.1rem;
-    background: #f4f4f4;
-    border-bottom: 1px solid var(--shadow-color);
+.selector{  
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#subject-dropdown:hover {
+.custom-dropdown.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.dropdown-item[data-value="All"] {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.custom-dropdown:hover {
     transform: translateY(-2px);
     box-shadow: 0 7px 20px var(--shadow-color);
 }
 
-#subject-dropdown:focus {
+.custom-dropdown:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 4px 12px rgba(42, 133, 194, 0.1);
+}
+
+.dropdown-title {
+    padding: 14px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.dropdown-items {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    border-top: 2px solid var(--shadow-color);
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 10px;
+    z-index: 1001;
+}
+
+.custom-dropdown.open .dropdown-items {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 #quiz-container {
@@ -237,7 +326,6 @@ header p {
     box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
 }
 
-/* Sticky Footer */
 footer {
     background-color: var(--primary-color);
     color: white;
@@ -246,7 +334,6 @@ footer {
     margin-top: auto;
 }
 
-/* Responsive Design */
 @media screen and (max-width: 768px) {
     header h1 {
         font-size: 1.8rem;
@@ -275,22 +362,7 @@ footer {
 
     #explanation {
         font-size: 0.9rem;
-    }
-    .subject-selector {
-        margin: 30px auto 15px;
-        padding: 0 15px;
-    }
-    
-    #subject-dropdown {
-        padding: 14px 45px 14px 20px;
-        font-size: 1.1rem;
-        background-position: right 15px center;
-    }
-    
-    #subject-dropdown option {
-        padding: 10px 16px;
-        font-size: 1rem;
-    }
+    }    
 }
 
 @media screen and (max-width: 480px) {
@@ -315,9 +387,5 @@ footer {
     #explanation {
         font-size: 0.8rem;
         padding: 8px;
-    }
-    #subject-dropdown {
-        padding: 14px 45px 14px 20px;
-        font-size: 1rem;
     }
 }

@@ -20,43 +20,41 @@
         <h1>AI Quiz</h1>
         <p>Test your knowledge with AI-generated questions from Class 10 NCERT.</p>
     </header>
-    <div class="subject-selector">
-        <select id="subject-dropdown">
-            <option value="general" disabled selected>Select a Subject</option>
-            <option value="all">All</option>
-            <option value="chemistry.json">Chemistry</option>
-            <option value="physics.json">Physics</option>
-            <option value="biology.json">Biology</option>
-            <option value="geography.json">Geography</option>
-            <option value="political_science.json">Political Science</option>
-            <option value="economics.json">Economics</option>
-            <option value="history.json">History</option>
-        </select>
+
+    <div class="selector">
+        <div class="custom-dropdown" id="class-dropdown">
+            <div class="dropdown-title">Select Class</div>
+            <div class="dropdown-items" id="class-dropdown-items">
+                <div class="dropdown-item" data-value="9">Class 9</div>
+                <div class="dropdown-item" data-value="10">Class 10</div>
+                <!-- <div class="dropdown-item" data-value="11">Class 11</div>
+                <div class="dropdown-item" data-value="12">Class 12</div> -->
+            </div>
+        </div>
+
+        <div class="custom-dropdown disabled" id="subject-dropdown">
+            <div class="dropdown-title">Select Subject</div>
+            <div class="dropdown-items">
+            </div>
+        </div>
     </div>
+
     <main>
         <section id="quiz-container">
-            <!-- Counter Section -->
             <div id="counter-box">
-                <p>Correct: <span id="correct-count">0</span> | Wrong: <span id="wrong-count">0</span> | Total: <span id="total-count">0</span></p>
+                <p>Correct: <span id="correct-count">0</span> | Wrong: <span id="wrong-count">0</span> | Total: <span
+                        id="total-count">0</span></p>
             </div>
-
-            <!-- Question Section -->
             <div id="question-box">
                 <p id="question">Loading question...</p>
             </div>
-
-            <!-- Answer Buttons -->
             <div id="answer-box">
                 <button id="true-answer" class="answer-button true">True</button>
                 <button id="false-answer" class="answer-button false">False</button>
             </div>
-
-            <!-- Result Section -->
             <div id="result-box">
                 <p id="result"></p>
             </div>
-
-            <!-- Explanation Section -->
             <div id="explanation-box">
                 <button id="next-question" class="navigation-button">Next Question</button>
                 <button id="show-explanation" class="navigation-button">Show Explanation</button>
@@ -68,6 +66,8 @@
     <footer>
         &copy; 2024 AceScience | All rights reserved.
     </footer>
+
+    <script src="quiz.js"></script>
 </body>
 
 </html>
