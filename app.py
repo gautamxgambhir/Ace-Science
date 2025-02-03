@@ -14,10 +14,6 @@ session_data = {
 def home():
     return render_template("index.html")
 
-@app.route("/resources")
-def resources():
-    return render_template("resources.html")
-
 @app.route("/quiz")
 def quiz():
     return render_template("quiz.html")
