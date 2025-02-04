@@ -95,7 +95,8 @@ def check_answer():
 @app.route("/show_explanation", methods=["POST"])
 def show_explanation():
     explanation = session_data.get("explanation", "No explanation available.")
-    return jsonify({"explanation": explanation})
+    answer = session_data.get("answer", "No explanation available.")
+    return jsonify({"explanation": f"'{answer}'\n {explanation}"})
 
 if __name__ == "__main__":
     app.run(debug=True)

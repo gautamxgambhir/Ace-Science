@@ -45,7 +45,7 @@ import random
 
 # save_chapters_to_json(pdf_files)
 
-def select_random_page(chapter_name="all", data_file="chemistry.json"):
+def select_random_page(chapter_name="all", data_file="chemistry10.json"):
     if data_file == "all9.json":
         random_data_file = random.choice(["chemistry9.json", "physics9.json", "biology9.json", "history9.json", "geography9.json", "political_science9.json", "economics.json9"])
         with open(f"subjects/{random_data_file}", "r", encoding="utf-8") as file:
