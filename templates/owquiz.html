@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - AceScience</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owquiz.css') }}">
+    <link rel="icon" href="https://i.ibb.co/R4hyjTFT/atomiq.png" type="image/x-icon" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/owquiz.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <a href="{{ url_for('home') }}" class="logo">
+            <img src="https://i.ibb.co/s5hPNRj/atomiq.png" alt="AceScience Logo">
+            <span>AceScience</span>
+        </a>
+        <h1>AI One Word Quiz</h1>
+        <p>Test your knowledge with AI-generated One Word questions from Class 10 NCERT.</p>
+    </header>
+
+    <div class="selector">
+        <div class="custom-dropdown" id="class-dropdown">
+            <div class="dropdown-title">Select Class</div>
+            <div class="dropdown-items" id="class-dropdown-items">
+                <div class="dropdown-item" data-value="9">Class 9</div>
+                <div class="dropdown-item" data-value="10">Class 10</div>
+                <div class="dropdown-item" data-value="11">Class 11</div>
+                <div class="dropdown-item" data-value="12">Class 12</div>
+            </div>
+        </div>
+
+        <div class="custom-dropdown disabled" id="subject-dropdown">
+            <div class="dropdown-title">Select Subject</div>
+            <div class="dropdown-items">
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section id="quiz-container">
+            <div id="counter-box">
+                <p>Correct: <span id="correct-count">0</span> | Wrong: <span id="wrong-count">0</span> | Total: <span
+                        id="total-count">0</span></p>
+            </div>
+            <div id="question-box">
+                <p id="question">Loading question...</p>
+            </div>
+            <div id="answer-box">
+                <div class="answer-input-container">
+                    <input type="text" id="answer-input" placeholder="Enter your answer" maxlength="30">
+                    <button id="submit-answer" class="answer-button">Submit</button>
+                </div>
+            </div>
+            <div id="result-box">
+                <p id="result"></p>
+            </div>
+            <div id="explanation-box">
+                <button id="next-question" class="navigation-button">Next Question</button>
+                <button id="show-explanation" class="navigation-button">Show Explanation</button>
+                <div id="explanation" class="explanation-box"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 AceScience | All rights reserved.
+    </footer>
+
+    <script src="owquiz.js"></script>
+</body>
+
+</html>

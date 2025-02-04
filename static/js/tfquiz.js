@@ -75,14 +75,14 @@ $(document).ready(function () {
             $("#result").text("");
             $("#explanation").text("");
             $("#explanation-box").hide();
-            loadQuestion(filename);
+            loadQuestion('truefalse', filename);
         });
 
         $subjectTitle.text($(this).text()).addClass("selected");
         $(".custom-dropdown").removeClass("open");
 
         if (currentClass && currentSubject) {
-            loadQuestion(filename);
+            loadQuestion('truefalse', filename);
         } else {
             $("#question").text("Please select a class and subject.");
             $("#answer-box").hide();
@@ -91,14 +91,14 @@ $(document).ready(function () {
         }
     });
 
-    function loadQuestion(filename) {
+    function loadQuestion(type, filename) {
         $("#question").text("Loading question...");
         $("#answer-box").hide();
         $("#explanation-box").hide();
         $("#result").text("");
         $("#explanation").text("");
         
-        $.get(`/ask_question?file=${encodeURIComponent(filename)}`)
+        $.get(`/ask_question?type=${encodeURIComponent(type)}&file=${encodeURIComponent(filename)}`)
         .done(data => {
             if (data.question) {
                 $("#question").text(data.question);

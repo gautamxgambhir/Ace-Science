@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from acescience import generate_response, ai_check_answer
+from acescience import generate_response_tf,generate_response_ow, ai_check_answer
 
 app = Flask(__name__)
 
@@ -14,33 +14,61 @@ session_data = {
 def home():
     return render_template("index.html")
 
-@app.route("/quiz")
-def quiz():
-    return render_template("quiz.html")
+@app.route("/tfquiz")
+def tfquiz():
+    return render_template("tfquiz.html")
+
+@app.route("/owquiz")
+def owquiz():
+    return render_template("owquiz.html")
 
 @app.route("/ask_question", methods=["POST", "GET"])
 def ask_question():
     retries = 3
     while retries > 0:
-        subject = request.args.get('file', 'general')
-        if subject == 'general':
-            response = "Please select a subject to generate a question."
-            return jsonify({"question":response})
-        else:
-            response = generate_response("['Question', 'Answer', 'Explanation']", datafile=subject)
-            try:
-                parsed_response = eval(response)
-                question, answer, explanation = parsed_response
-                if question in session_data["asked_questions"]:
+        type = request.args.get('type', 'no_type')
+        if type == 'truefalse':
+            subject = request.args.get('file', 'general')
+            if subject == 'general':
+                response = "Please select a subject to generate a question."
+                return jsonify({"question":response})
+            else:
+                response = generate_response_tf("['Question', 'Answer', 'Explanation']", datafile=subject)
+                try:
+                    parsed_response = eval(response)
+                    question, answer, explanation = parsed_response
+                    if question in session_data["asked_questions"]:
+                        retries -= 1
+                        continue
+                    session_data["current_question"] = question
+                    session_data["answer"] = answer
+                    session_data["explanation"] = explanation
+                    session_data["asked_questions"].add(question)
+                    return jsonify({"question": question})
+                except Exception:
                     retries -= 1
-                    continue
-                session_data["current_question"] = question
-                session_data["answer"] = answer
-                session_data["explanation"] = explanation
-                session_data["asked_questions"].add(question)
-                return jsonify({"question": question})
-            except Exception:
-                retries -= 1
+        elif type == 'oneword':
+            subject = request.args.get('file', 'general')
+            if subject == 'general':
+                response = "Please select a subject to generate a question."
+                return jsonify({"question":response})
+            else:
+                response = generate_response_ow("['Question', 'Answer', 'Explanation']", datafile=subject)
+                try:
+                    parsed_response = eval(response)
+                    question, answer, explanation = parsed_response
+                    if question in session_data["asked_questions"]:
+                        retries -= 1
+                        continue
+                    session_data["current_question"] = question
+                    session_data["answer"] = answer
+                    session_data["explanation"] = explanation
+                    session_data["asked_questions"].add(question)
+                    return jsonify({"question": question})
+                except Exception:
+                    retries -= 1
+        else:
+            return jsonify({"error": "Invalid question type. Please try again."})
     return jsonify({"error": "Failed to generate a question. Try again."})
 
 @app.route("/check_answer", methods=["POST"])

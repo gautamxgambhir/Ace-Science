@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root {
+    --primary-color: rgb(42, 133, 194);
+    --secondary-color: rgba(42, 105, 194, 0.8);
+    --text-color: #333;
+    --bg-light: #f7f7f7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-primary: 'Ubuntu', sans-serif;
+    --font-secondary: 'Parkinsans', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
+.dropdown-items::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 10px;
+}
+
+.dropdown-items::-webkit-scrollbar-track {
+    background: white;
+}
+
+.dropdown-items::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+header .logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+}
+
+header .logo span {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bolder;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    font-size: 1.1rem;
+}
+
+.custom-dropdown .dropdown-title.selected {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.loading-indicator {
+    display: none;
+    color: var(--primary-color);
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.custom-dropdown .dropdown-title {
+    position: relative;
+    padding-right: 30px;
+}
+
+.custom-dropdown .dropdown-title::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.custom-dropdown.open .dropdown-title::after {
+    content: "▲";
+}
+
+.dropdown-item.selected {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.custom-dropdown {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    position: relative;
+    font-family: 'Courier New', monospace;
+    border: 2px solid var(--shadow-color);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block; 
+    z-index: 1000;
+}
+
+.selector{  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-dropdown.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.dropdown-item[data-value="All"] {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.custom-dropdown:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px var(--shadow-color);
+}
+
+.custom-dropdown:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(42, 133, 194, 0.1);
+}
+
+.dropdown-title {
+    padding: 14px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.dropdown-items {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    border-top: 2px solid var(--shadow-color);
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 10px;
+    z-index: 1001;
+}
+
+.custom-dropdown.open .dropdown-items {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#quiz-container {
+    max-width: 600px;
+    margin: auto auto;
+    margin-bottom: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    text-align: center;
+}
+
+#counter-box {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+#question{
+    padding: 0px 30px;
+}
+
+#question-box {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    border: 2px solid var(--shadow-color);
+    border-radius: 8px;
+    background-color: #f4f4f4;
+}
+
+#answer-box {
+    margin-bottom: 20px;
+}
+
+.answer-input-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+#answer-input {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 2px solid var(--shadow-color);
+    border-radius: 5px;
+    width: 200px;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+#answer-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(42, 133, 194, 0.1);
+}
+
+#submit-answer {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgb(0, 166, 19);
+    color: white;
+}
+
+#submit-answer:hover {
+    background-color: rgb(0, 147, 17);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgb(0, 124, 14,0.3);
+}
+
+#result-box {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+#explanation-box {
+    margin-top: 20px;
+}
+
+#explanation {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    border: 2px solid var(--shadow-color);
+    border-radius: 8px;
+    background-color: #f4f4f4;
+}
+
+.navigation-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.5s ease, box-shadow 0.3s ease;
+}
+
+#next-question {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#next-question:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(42, 133, 194, 0.3);
+}
+
+#show-explanation {
+    background-color: orange;
+    color: white;
+}
+
+#show-explanation:hover {
+    background-color: darkorange;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    #quiz-container {
+        padding: 15px;
+    }
+
+    .answer-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    #question-box {
+        font-size: 1rem;
+    }
+
+    #result-box {
+        font-size: 1rem;
+    }
+
+    #explanation {
+        font-size: 0.9rem;
+    }    
+}
+
+@media screen and (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .answer-button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .answer-input-container {
+        flex-direction: column;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    #answer-input {
+        width: 100%;
+        padding: 10px 15px;
+    }
+    
+    #submit-answer {
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    #question-box {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    #explanation {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}
