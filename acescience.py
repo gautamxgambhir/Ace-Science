@@ -332,5 +332,3 @@ def ai_check_answer(user_input):
         return "Error validating answer."
 
     return response.json()["choices"][0]["message"]["content"]
-
-print(generate_response_mcq("follow the format, ['Question', 'Answer', 'Explanation', 'Page number', 'Chapter name', 'option 1', 'option 2', 'option 3', 'option 4']", "accountancy_part-212.json"))

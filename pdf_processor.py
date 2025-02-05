@@ -17,7 +17,7 @@ import random
     
 #     return chapter_data
 
-# def save_chapters_to_json(pdf_paths, output_file="chapters_data.json"):
+# def save_chapters_to_json(pdf_paths, output_file=f"{str(input("name : "))}.json"):
 #     """
 #     Process multiple PDFs and save the extracted data as a JSON file.
 #     """
@@ -35,16 +35,20 @@ import random
 #     print(f"Chapters saved to {output_file}")
 
 # pdf_files = {
-#     "Chapter 9: Financial Management": "lebs201.pdf",
-#     "Chapter 10: Marketing": "lebs202.pdf",
-#     "Chapter 11: Consumer Protection": "lebs203.pdf"
+#     "Chapter 1: Integrals": "lemh201.pdf",
+#     "Chapter 2: Application of Integrals": "lemh202.pdf",
+#     "Chapter 3: Differential Equations": "lemh203.pdf",
+#     "Chapter 4: Vector Algebra": "lemh204.pdf",
+#     "Chapter 5: Three-Dimensional Geometry": "lemh205.pdf",
+#     "Chapter 6: Linear Programming": "lemh206.pdf",
+#     "Chapter 7: Probability": "lemh207.pdf"
 # }
 
 # save_chapters_to_json(pdf_files)
 
 def select_random_page(chapter_name="all", data_file="chemistry10.json"):
     if data_file == "all9.json":
-        random_data_file = random.choice(["chemistry9.json", "physics9.json", "biology9.json", "history9.json", "geography9.json", "political_science9.json", "economics.json9"])
+        random_data_file = random.choice(["chemistry9.json", "physics9.json", "biology9.json", "history9.json", "geography9.json", "political_science9.json", "economics.json"])
         with open(f"subjects/{random_data_file}", "r", encoding="utf-8") as file:
             chapters_data = json.load(file)
         if chapter_name != "all":

@@ -6,10 +6,46 @@ $(document).ready(function () {
     let currentClass = null;
     
     const subjects = {
-        "9": ["All", "Chemistry", "Physics", "Biology", "Geography", "Civics", "History", "Economics", "Mathematics"],
-        "10": ["All", "Chemistry", "Physics", "Biology", "Geography", "Political Science", "Economics", "History", "Mathematics"],
-        "11": ["Accountancy Part-1", "Accountancy Part-2"],
-        "12": ["Accountancy Part-1", "Accountancy Part-2"]
+        "9": {
+            "All": "all9.json",
+            "Chemistry": "chemistry9.json",
+            "Physics": "physics9.json",
+            "Biology": "biology9.json",
+            "Geography": "geography9.json",
+            "Civics": "civics9.json",
+            "History": "history9.json",
+            "Economics": "economics9.json",
+            "Mathematics": "mathematics9.json"
+        },
+        "10": {
+            "All": "all10.json",
+            "Chemistry": "chemistry10.json",
+            "Physics": "physics10.json",
+            "Biology": "biology10.json",
+            "Geography": "geography10.json",
+            "Political Science": "political_science10.json",
+            "Economics": "economics10.json",
+            "History": "history10.json",
+            "Mathematics": "mathematics10.json"
+        },
+        "11": {
+            "Accountancy Part-1": "accountancy_part1_11.json",
+            "Accountancy Part-2": "accountancy_part2_11.json",
+            "Business Studies": "business_studies_11.json",
+            "Statistics for Economics": "economics_statistics_11.json",
+            "Indian Economic Development":"indian_economic_development_11.json",
+            "Mathematics":"mathematics_11.json",
+        },
+        "12": {
+            "Accountancy Part-1": "accountancy_part1_12.json",
+            "Accountancy Part-2": "accountancy_part2_12.json",
+            "Business Studies Part-1": "business_studies_part1_12.json",
+            "Business Studies Part-2": "business_studies_part2_12.json",
+            "Microeconomics": "microeconomics_12.json",
+            "Macroeconomics": "macroeconomics_12.json",
+            "Mathematics Part-1":"mathematics_part1_12.json",
+            "Mathematics Part-2":"mathematics_part2_12.json",
+        }
     };
     
     const $classDropdown = $("#class-dropdown");
@@ -55,7 +91,7 @@ $(document).ready(function () {
         
         $subjectDropdown.removeClass("disabled")
         .find(".dropdown-items")
-        .html(subjects[currentClass].map(subj =>
+        .html(Object.keys(subjects[currentClass]).map(subj =>
             `<div class="dropdown-item" data-value="${subj}">${subj}</div>`
         ).join(""));
         
@@ -68,8 +104,7 @@ $(document).ready(function () {
         const rawSubject = $(this).data("value");
         currentSubject = rawSubject;
 
-        const formattedSubject = rawSubject.toLowerCase().replace(/ /g, '_');
-        const filename = `${formattedSubject}${currentClass}.json`;
+        const filename = subjects[currentClass][currentSubject];
 
         $("#next-question").off("click").click(() => {
             $("#result").text("");
