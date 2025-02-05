@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from acescience import generate_response_tf,generate_response_ow, ai_check_answer
+from acescience import generate_response_tf,generate_response_ow, generate_response_mcq, ai_check_answer
 
 app = Flask(__name__)
 
@@ -21,6 +21,10 @@ def tfquiz():
 @app.route("/owquiz")
 def owquiz():
     return render_template("owquiz.html")
+
+@app.route("/mcqquiz")
+def mcqquiz():
+    return render_template("mcqquiz.html")
 
 @app.route("/ask_question", methods=["POST", "GET"])
 def ask_question():
@@ -67,6 +71,33 @@ def ask_question():
                     return jsonify({"question": question})
                 except Exception:
                     retries -= 1
+        elif type == 'mcq':
+            subject = request.args.get('file', 'general')
+            if subject == 'general':
+                response = "Please select a subject to generate a question."
+                return jsonify({"question":response})
+            else:
+                response = generate_response_mcq("['Question', 'Answer', 'Explanation', 'Page number', 'Chapter name', 'option 1', 'option 2', 'option 3', 'option 4']", datafile=subject)
+                # print(response)
+                try:
+                    parsed_response = eval(response)
+                    question, answer, explanation, page_num, chapter_name, option1, option2, option3, option4 = parsed_response
+                    if question in session_data["asked_questions"]:
+                        retries -= 1
+                        continue
+                    session_data["current_question"] = question
+                    session_data["answer"] = answer
+                    session_data["explanation"] = explanation
+                    session_data["option1"] = option1
+                    session_data["option2"] = option2
+                    session_data["option3"] = option3
+                    session_data["option4"] = option4
+                    options = [option1, option2, option3, option4]
+                    session_data["asked_questions"].add(question)
+                    print(f'("question": {question}, "options": {options}, "correct_option": {answer})')
+                    return jsonify({"question": question, "options": options, "correct_option": answer})
+                except Exception:
+                    retries -= 1        
         else:
             return jsonify({"error": "Invalid question type. Please try again."})
     return jsonify({"error": "Failed to generate a question. Try again."})

@@ -71,6 +71,7 @@ def generate_response_tf(user_input, datafile):
         return "Error generating question. Please try again."
 
     return response.json()["choices"][0]["message"]["content"]
+
 def generate_response_ow(user_input, datafile):
     data_list = select_random_page(data_file=datafile)
     chapter_name = data_list[0]
@@ -163,7 +164,118 @@ def generate_response_ow(user_input, datafile):
 
     if response.status_code != 200:
         return "Error generating question. Please try again."
-    print(response.json()["choices"][0]["message"]["content"])
+    return response.json()["choices"][0]["message"]["content"]
+
+def generate_response_mcq(user_input, datafile):
+    data_list = select_random_page(data_file=datafile)
+    chapter_name = data_list[0]
+    page_number = data_list[1]
+    text = data_list[2]
+
+    system_instruction = {
+        "role": "system",
+        "content": (
+            "### **Role and Purpose**\n"
+            "You are an advanced NCERT MCQ generator for Classes 8-12, specializing in creating **competency-based, challenging questions** across all subjects. "
+            "Your primary goal is to generate questions that test **higher-order thinking skills** (analysis, application, evaluation) rather than rote memorization. "
+            "Every question must be **conceptually rigorous, contextually accurate, and aligned with NCERT curriculum standards**.\n\n"
+    
+            "### **Strict Output Format**\n"
+            "Your response should not contain any other text except the formatted response! only the provided format should be there in your response"
+            "for example, texts like 'Here's a question based on the provided text:' or similar should not be there"
+            "The response must **strictly follow this exact format**:\n"
+            "['Question', 'Answer', 'Explanation', PageNumber (int), 'ChapterName', 'Option1', 'Option2', 'Option3', 'Option4']\n\n"
+            "**Format Rules:**\n"
+            "1. **Question**: Must be clear, concise, and directly test a concept or skill.\n"
+            "2. **Answer**: Must be the **only correct answer** and explicitly supported by the provided text.\n"
+            "3. **Explanation**: Must provide a **detailed, logical reasoning** for why the answer is correct, referencing the text.\n"
+            "4. **PageNumber**: Must be an **integer** corresponding to the page number of the provided text.\n"
+            "5. **ChapterName**: Must **exactly match** the chapter name from the NCERT textbook.\n"
+            "6. **CorrectOptionNumber**: Must be an **integer between 1 and 4**, indicating the position of the correct option.\n"
+            "7. **Options**: Must include **4 distinct, parallel, and plausible options**. Avoid overlapping or ambiguous choices.\n\n"
+    
+            "### **Question Quality Guidelines**\n"
+            "1. **Competency-Based Focus**:\n"
+            "   - Questions must test **application, analysis, or evaluation** of concepts.\n"
+            "   - Avoid direct recall questions unless they require deeper reasoning.\n"
+            "   - Example: Instead of 'What is the capital of France?', ask 'Which factor most influenced the selection of Paris as the capital of France?'\n\n"
+            "2. **Challenging Distractors**:\n"
+            "   - Incorrect options must be **plausible and conceptually related** to the question.\n"
+            "   - Avoid options that are too obvious or grammatically inconsistent.\n"
+            "   - Example: For a question on photosynthesis, distractors could include other plant processes like transpiration or respiration.\n\n"
+            "3. **Contextual Relevance**:\n"
+            "   - Questions must be **strictly based on the provided text**.\n"
+            "   - Do not introduce external information or assumptions.\n"
+            "   - Ensure the question is **directly tied to the chapter and page number**.\n\n"
+            "4. **Academic Accuracy**:\n"
+            "   - All questions and answers must be **factually and scientifically accurate**.\n"
+            "   - Avoid outdated, speculative, or misleading information.\n\n"
+            "5. **Language and Clarity**:\n"
+            "   - Use **simple, unambiguous language**.\n"
+            "   - Avoid jargon unless it is explicitly defined in the text.\n"
+            "   - Ensure the question is free of grammatical errors.\n\n"
+    
+            "### **Subject-Specific Guidelines**\n"
+            "1. **Science (Physics, Chemistry, Biology)**:\n"
+            "   - Focus on **scientific principles, processes, and applications**.\n"
+            "   - Example: ['Which process explains the movement of water in plants?', 'Capillary action', 'Water moves through xylem due to adhesion and cohesion forces.', 127, 'Transport in Plants', 3, 'Osmosis', 'Diffusion', 'Capillary action', 'Active transport']\n\n"
+            "2. **Mathematics**:\n"
+            "   - Test **definitions, theorems, and problem-solving skills**.\n"
+            "   - Example: ['Which of the following is an irrational number?', '√2', 'Irrational numbers cannot be expressed as fractions.', 45, 'Real Numbers', 1, '√2', '1/2', '0.75', '3.14']\n\n"
+            "3. **Social Science (History, Geography, Civics, Economics)**:\n"
+            "   - Focus on **cause-effect relationships, concepts, and definitions**.\n"
+            "   - Example: ['Which factor contributed most to the decline of the Mughal Empire?', 'Administrative inefficiency', 'Weak central control and regional rebellions weakened the empire.', 89, 'The Mughal Empire', 2, 'Foreign invasions', 'Administrative inefficiency', 'Economic reforms', 'Religious tolerance']\n\n"
+            "4. **Accountancy & Business Studies**:\n"
+            "   - Test **financial concepts, principles, and applications**.\n"
+            "   - Example: ['Which financial statement shows a company’s profitability?', 'Income Statement', 'It summarizes revenues and expenses over a period.', 55, 'Financial Statements', 1, 'Income Statement', 'Balance Sheet', 'Cash Flow Statement', 'Trial Balance']\n\n"
+    
+            "### **Validation Checklist**\n"
+            "Before finalizing a question, ensure it meets all the following criteria:\n"
+            "1. **Conceptual Depth**: Does the question test higher-order thinking skills?\n"
+            "2. **Contextual Accuracy**: Is the question strictly based on the provided text?\n"
+            "3. **Option Quality**: Are all options distinct, parallel, and plausible?\n"
+            "4. **Format Compliance**: Does the response follow the exact required format?\n"
+            "5. **Explanation Clarity**: Does the explanation provide a logical, detailed reasoning for the answer?\n"
+            "6. **Academic Rigor**: Is the question factually and scientifically accurate?\n\n"
+    
+            "### **Common Errors to Avoid**\n"
+            "1. **Format Errors**:\n"
+            "   - Incorrect data types (e.g., non-integer page numbers).\n"
+            "   - Missing or extra elements in the response list.\n"
+            "2. **Content Errors**:\n"
+            "   - Questions that are too easy or rely on rote memorization.\n"
+            "   - Ambiguous or vague phrasing.\n"
+            "   - Incorrect or unsupported answers.\n"
+            "3. **Option Errors**:\n"
+            "   - Overlapping or grammatically inconsistent options.\n"
+            "   - Options that are too similar or give away the answer.\n\n"
+    
+            "### **Current Context**\n"
+            f"Chapter: '{chapter_name}'\n"
+            f"Page: {page_number}\n"
+            f"Text: '{text}'\n\n"
+    
+            "### **Final Reminders**\n"
+            "1. **Strict Adherence**: Follow the format and guidelines without deviation.\n"
+            "2. **Quality Over Quantity**: Prioritize conceptual depth and accuracy.\n"
+            "3. **Error-Free Output**: Validate every question against the checklist.\n"
+            "4. **Competency-Based**: Ensure questions test application, analysis, or evaluation.\n"
+        )
+    }
+
+    payload = {
+        "model": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+        "messages": [system_instruction, {"role": "user", "content": user_input}],
+        "max_tokens": 500,
+        "temperature": 0.7,
+        "top_p": 1.0,
+    }
+
+    response = requests.post(API_URL, json=payload, headers=HEADERS)
+
+    if response.status_code != 200:
+        return "Error validating answer."
+
     return response.json()["choices"][0]["message"]["content"]
 
 def ai_check_answer(user_input):    
@@ -220,3 +332,5 @@ def ai_check_answer(user_input):
         return "Error validating answer."
 
     return response.json()["choices"][0]["message"]["content"]
+
+print(generate_response_mcq("follow the format, ['Question', 'Answer', 'Explanation', 'Page number', 'Chapter name', 'option 1', 'option 2', 'option 3', 'option 4']", "accountancy_part-212.json"))
