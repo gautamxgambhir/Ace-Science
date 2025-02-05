@@ -6,8 +6,8 @@ $(document).ready(function () {
     let currentClass = null;
     
     const subjects = {
-        "9": ["All", "Chemistry", "Physics", "Biology", "Geography", "Civics", "History", "Economics"],
-        "10": ["All", "Chemistry", "Physics", "Biology", "Geography", "Political Science", "Economics", "History"],
+        "9": ["All", "Chemistry", "Physics", "Biology", "Geography", "Civics", "History", "Economics", "Mathematics"],
+        "10": ["All", "Chemistry", "Physics", "Biology", "Geography", "Political Science", "Economics", "History", "Mathematics"],
         "11": ["Accountancy Part-1", "Accountancy Part-2"],
         "12": ["Accountancy Part-1", "Accountancy Part-2"]
     };
