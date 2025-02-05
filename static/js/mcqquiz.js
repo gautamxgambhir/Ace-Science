@@ -200,8 +200,7 @@ $(document).ready(function () {
 
     function loadNextQuestion() {
         if (currentClass && currentSubject) {
-            const formattedSubject = currentSubject.toLowerCase().replace(/ /g, '_');
-            const filename = `${formattedSubject}${currentClass}.json`;
+            const filename = subjects[currentClass][currentSubject];
             loadQuestion('mcq', filename);
         }
     }
