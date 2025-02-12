@@ -26,7 +26,8 @@ $(document).ready(function () {
             "Political Science": "political_science10.json",
             "Economics": "economics10.json",
             "History": "history10.json",
-            "Mathematics": "mathematics10.json"
+            "Mathematics": "mathematics10.json",
+            "English communicative": "english_communicative10.json",
         },
         "11": {
             "Accountancy Part-1": "accountancy_part1_11.json",

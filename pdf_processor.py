@@ -35,16 +35,23 @@ import random
 #     print(f"Chapters saved to {output_file}")
 
 # pdf_files = {
-#     "Chapter 1: Integrals": "lemh201.pdf",
-#     "Chapter 2: Application of Integrals": "lemh202.pdf",
-#     "Chapter 3: Differential Equations": "lemh203.pdf",
-#     "Chapter 4: Vector Algebra": "lemh204.pdf",
-#     "Chapter 5: Three-Dimensional Geometry": "lemh205.pdf",
-#     "Chapter 6: Linear Programming": "lemh206.pdf",
-#     "Chapter 7: Probability": "lemh207.pdf"
+#     "Chapter 1: Two Gentlemen of Verona": "c1.pdf",
+#     "Chapter 2: Mrs. Packletide's Tiger": "c2.pdf",
+#     "Chapter 3: The Letter": "c3.pdf",
+#     "Chapter 4: A Shady Plot": "c4.pdf",
+#     "Chapter 5: Patol Babu, Film Star": "c5.pdf",
+#     "Chapter 6: Virtually True": "c6.pdf",
+#     "Chapter 7: The Frog and the Nightingale": "c7.pdf",
+#     "Chapter 8: Not Marble, nor the Gilded Monuments": "c8.pdf",
+#     "Chapter 9: Ozymandias": "c9.pdf",
+#     "Chapter 10: The Rime of the Ancient Mariner": "c10.pdf",
+#     "Chapter 11: Snake": "c11.pdf",
+#     "Chapter 12: The Dear Departed": "c12.pdf",
+#     "Chapter 13: Julius Caesar": "c13.pdf"
 # }
 
 # save_chapters_to_json(pdf_files)
+
 
 def select_random_page(chapter_name="all", data_file="chemistry10.json"):
     if data_file == "all9.json":
