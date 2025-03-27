@@ -15,11 +15,11 @@
 
 ## What is it?
 
-AceNCERT is an AI-powered tool designed to generate and validate questions from NCERT textbooks for **Classes 8 to 12**. It utilizes **Flask** for the backend, **Together API** for AI-driven question generation and answer validation, and a clean **HTML, CSS, and JavaScript** frontend.
+AceNCERT is an AI-powered tool designed to generate and validate questions from NCERT textbooks for **Classes 9 to 12**. It utilizes **Flask** for the backend, **Together API** for AI-driven question generation and answer validation, and a clean **HTML, CSS, and JavaScript** frontend.
 
 With **AceNCERT**, you can:
 - Get text from **random pages** of NCERT books for a selected class and subject.
-- Generate different types of questions (**MCQs, one-word answers, short answers, long answers, and more**) using AI.
+- Generate different types of questions (**MCQs, one-word answers, and True/False**) using AI.
 - Validate the correctness of answers using AI.
 
 ## How It Works
