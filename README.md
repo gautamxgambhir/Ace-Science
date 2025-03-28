@@ -25,7 +25,7 @@ With **AceNCERT**, you can:
 ## How It Works
 
 1. **NCERT PDFs Processing**: 
-   - Official **NCERT PDFs** for **Classes 8-12** were downloaded and preprocessed using Python.
+   - Official **NCERT PDFs** for **Classes 9-12** were downloaded and preprocessed using Python.
    - Converted into structured **JSON format** for fast retrieval.
 
 2. **Random Page Selection**:
